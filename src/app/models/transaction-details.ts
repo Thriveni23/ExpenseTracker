@@ -1,9 +1,9 @@
 export interface Transaction {
-    Id: number,
-    Year: number,
-    Month: string,
-    Date: number,
-    Description: string,
-    Amount: number,
-    Type: string,
+    id: number,
+    year: number,
+    month: string,
+    date: number,
+    description: string,
+    amount: number,
+    type: string,
 }

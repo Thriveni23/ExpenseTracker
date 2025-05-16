@@ -1,2 +1,4 @@
-
-<app-insert-transaction></app-insert-transaction>
+<app-insert-transaction
+  [transactionary]="transactionary"
+  (transactionInserted)="getTransactions()">
+</app-insert-transaction>

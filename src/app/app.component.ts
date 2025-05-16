@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { InsertTransactionComponent } from './insert-transaction/insert-transaction.component';
 import { TransactionDetailsService } from './service/transaction-details.service';
-
-import { HttpClient } from '@angular/common/http';      
-
+import { HttpClientModule } from '@angular/common/http';
+import { Transaction } from './models/transaction-details';  // <-- import interface
 
 @Component({
   selector: 'app-root',
@@ -12,20 +11,42 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     RouterOutlet,
     InsertTransactionComponent,
-    HttpClient // ✅ Add this here
   ],
+  providers: [HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  @Input() transactionary: Transaction[] = [];  // <-- added this
+
   constructor(private transerve: TransactionDetailsService) {}
 
   ngOnInit(): void {
     this.transerve.GetTransaction().subscribe({
-      next: (response) => console.log(response),
+      next: (response) => {
+        console.log(response); 
+        if (response && response.length > 0) {
+          this.transactionary = response;  
+        } else {
+          this.transactionary = []; 
+        }
+      },
       error: (err) => console.error('API error:', err)
     });
   }
 
+  getTransactions(): void {
+    this.transerve.GetTransaction().subscribe({
+      next: (data) => {
+        this.transactionary = [...data];
+        console.log('Fetched Transactions:', this.transactionary);  
+      },
+      error: (err) => {
+        console.error('Error loading transactions:', err);
+      }
+    });
+  }
+
+  
   title = 'expenseTrackerapp';
 }

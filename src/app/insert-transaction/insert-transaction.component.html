@@ -1,54 +1,54 @@
 <div class="container">
-    <h2>Insert Transaction</h2>
-    <form>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Year</label>
-          <select [(ngModel)]="transaction.year" name="year" required>
-            <option *ngFor="let y of years" [value]="y">{{ y }}</option>
-          </select>
-        </div>
-  
-        <div class="form-group">
-          <label>Month*</label>
-          <select [(ngModel)]="transaction.month" name="month" required>
-            <option *ngFor="let m of months" [value]="m">{{ m }}</option>
-          </select>
-        </div>
-  
-        <div class="form-group">
-          <label>Date*</label>
-          <input type="number" [(ngModel)]="transaction.date" name="date" required />
-        </div>
-  
-        <div class="form-group">
-          <label>Description*</label>
-          <input type="text" [(ngModel)]="transaction.description" name="description" required />
-        </div>
-  
-        <div class="form-group">
-          <label>Amount*</label>
-          <input type="number" [(ngModel)]="transaction.amount" name="amount" required />
-        </div>
-  
-        <div class="form-group">
-          <label>Type*</label>
-          <select [(ngModel)]="transaction.type" name="type" required>
-            <option value="Debit">Debit</option>
-            <option value="Credit">Credit</option>
-          </select>
-        </div>
+  <h2>Insert Transaction</h2>
+  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Year</label>
+        <select formControlName="year" required>
+          <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+        </select>
       </div>
-  
-      <button type="button" (click)="insertTransaction()">Insert</button>
-    </form>
+
+      <div class="form-group">
+        <label>Month*</label>
+        <select formControlName="month" required>
+          <option *ngFor="let m of months" [value]="m">{{ m }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Date*</label>
+        <input type="number" formControlName="date" required />
+      </div>
+
+      <div class="form-group">
+        <label>Description*</label>
+        <input type="text" formControlName="description" required />
+      </div>
+
+      <div class="form-group">
+        <label>Amount*</label>
+        <input type="number" formControlName="amount" required />
+      </div>
+
+      <div class="form-group">
+        <label>Type*</label>
+        <select formControlName="type" required>
+          <option value="Debit">Debit</option>
+          <option value="Credit">Credit</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="transactionForm.invalid">Insert</button>
+  </form>
     <div>
-      <table class="table">
+      <table class="table" >
         <thead>
           <tr>
             <td>Year</td>
-          <td>Month</td>
-          <td>Date</td>
+          
+          <td>Date & Month</td>
           <td>Description</td>
           <td>Amount</td>
           <td>Type</td>
@@ -56,18 +56,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>2025</td>
-          <td>June</td>
-          <td>17</td>
-          <td>Savings</td>
-          <td>2000</td>
-          <td>Debit</td>
-          <td>
-            <button >Edit</button>
-            <button style="background-color:red" >Delete</button>
-          </td>
-          </tr>
+          
+            <tr *ngFor="let tran of transactionary">
+              <td>{{ tran.year }}</td>
+              <td>{{ tran.date }} - {{ tran.month }}</td>
+             
+              <td>{{ tran.description }}</td>
+              <td>{{ tran.amount }}</td>
+              <td>{{ tran.type }}</td>
+              <td>
+                <button (click)="onEdit(tran)">Edit</button>
+                <button style="background-color:red" (click)="onDelete(tran)">Delete</button>
+              </td>
+            </tr>
+         
+          
         </tbody>
 
       </table>
