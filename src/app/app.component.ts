@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { InsertTransactionComponent } from './insert-transaction/insert-transaction.component';
 import { TransactionDetailsService } from './service/transaction-details.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Transaction } from './models/transaction-details';  // <-- import interface
@@ -10,14 +9,14 @@ import { Transaction } from './models/transaction-details';  // <-- import inter
   standalone: true,
   imports: [
     RouterOutlet,
-    InsertTransactionComponent,
+    
   ],
   providers: [HttpClientModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  @Input() transactionary: Transaction[] = [];  // <-- added this
+  @Input() transactionary: Transaction[] = [];  
 
   constructor(private transerve: TransactionDetailsService) {}
 
