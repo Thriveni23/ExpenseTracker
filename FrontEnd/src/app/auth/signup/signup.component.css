@@ -1,18 +1,18 @@
-/* Page background and layout */
-body {
-    background-color: #140e11;
-    color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-color: #0e0b0d; */
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
   
   /* Signup container box */
   .signup-container {
-    background-color: #1f1519;
+    background-color: rgba(31, 21, 25, 0.85);
     padding: 40px;
     border: 1px solid #f5b3f0;
     border-radius: 12px;

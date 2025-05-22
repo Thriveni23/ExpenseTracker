@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 @Component({
-  standalone: true,
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  imports: [RouterModule]
+  styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {}
+export class DashboardComponent {
+  isSidebarOpen = false;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen = false;
+  }
+}

@@ -8,8 +8,8 @@ import { provideHttpClient } from '@angular/common/http';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes),//Injects Angular's routing system into the app using your defined routes
     provideClientHydration(),
-    provideHttpClient()
+    provideHttpClient()//for http ie API calls
   ]
 };

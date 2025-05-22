@@ -1,3 +1,18 @@
-<h2>Welcome to Dashboard</h2>
-    <p>Logged in as: {{ username }}</p>
-    <button (click)="logout()">Logout</button>
+<!-- Menu bar with hamburger icon -->
+<div class="topbar">
+    <div class="menu-icon" (click)="toggleSidebar()">☰</div>
+    <h2>Welcome to Dashboard</h2>
+  </div>
+  
+  <!-- Sidebar Drawer -->
+  <div class="sidebar" [class.open]="isSidebarOpen">
+    <ul>
+      <li><a routerLink="/module1" (click)="closeSidebar()">Module 1</a></li>
+      <li><a routerLink="/module2" (click)="closeSidebar()">Module 2</a></li>
+      <li><a routerLink="/module3" (click)="closeSidebar()">Module 3</a></li>
+      <li><a routerLink="/module4" (click)="closeSidebar()">Module 4</a></li>
+    </ul>
+  </div>
+  
+  
+  

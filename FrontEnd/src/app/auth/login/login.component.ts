@@ -13,7 +13,7 @@ import { AuthService } from '../../service/auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-
+  
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -30,6 +30,9 @@ export class LoginComponent {
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
         alert('Login success!!');
+       
+       
+       
         localStorage.setItem('token', res.token);
         console.log('Login response:', res);
         this.router.navigate(['/dashboard']);
@@ -41,3 +44,6 @@ export class LoginComponent {
     });
   }
 }
+//container for multiple form controls
+//formbuilder is a service to build the formGroup and formcontrol
+//formGroup binds this form to the loginForm object

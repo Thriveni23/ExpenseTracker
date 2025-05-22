@@ -2,25 +2,24 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TransactionDetailsService } from './service/transaction-details.service';
 import { HttpClientModule } from '@angular/common/http';
-import { Transaction } from './models/transaction-details';  // <-- import interface
+import { Transaction } from './models/transaction-details';  
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    
   ],
-  providers: [HttpClientModule],
+  //providers: [HttpClientModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  @Input() transactionary: Transaction[] = [];  
+   transactionary: Transaction[] = [];  
 
   constructor(private transerve: TransactionDetailsService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {//automatically called when initialising the component
     this.transerve.GetTransaction().subscribe({
       next: (response) => {
         console.log(response); 
@@ -32,7 +31,7 @@ export class AppComponent implements OnInit {
       },
       error: (err) => console.error('API error:', err)
     });
-  }
+  }//calls to get the transaction data from backend right when the app loads
 
   getTransactions(): void {
     this.transerve.GetTransaction().subscribe({
@@ -44,8 +43,9 @@ export class AppComponent implements OnInit {
         console.error('Error loading transactions:', err);
       }
     });
-  }
+  }//gets the transaction data from backend when the manually triggered 
 
   
   title = 'expenseTrackerapp';
 }
+//placeholder that renders component based on routes

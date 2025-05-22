@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Transaction } from '../models/transaction-details';
 import { Observable } from 'rxjs';
 
-
+//this service connects the angular frontend to the backend api
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'//making this service available application wide
 })
 export class TransactionDetailsService {
 
@@ -27,5 +27,8 @@ export class TransactionDetailsService {
   deleteTransaction(id: number): Observable<any> {
     return this.httpclient.delete(`${this.baseurl}/${id}`);
   }
+
+  //Observable = “Data is coming soon”
+//subscribe() = “Here’s what to do when it arrives”
   
 }
